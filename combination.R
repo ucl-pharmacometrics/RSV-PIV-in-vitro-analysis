@@ -232,6 +232,16 @@ pl_HSA(res5)
 pl_HSA(res6)
 dev.off()
 
+########### Save the results in tables
+# select the result
+res <- readRDS("rem-favi.rds")
+res
+
+# save all the synergy results
+df <- subset(res$synergy_scores, select = c(conc1, conc2, ZIP_synergy,
+                                            HSA_synergy, Bliss_synergy, Loewe_synergy))
+write.csv(df ,"REM_FAV_synergy_table.csv")
+
 ############cytotoxic 3D plot ############
 dfcyto <- extract.2combtherapy(mergedcsv="cytotoxic_merged.csv", drugno_A = 1, drugno_B = 2, ConcUnit = "mg/L")
 dfcyto2 <- extract.2combtherapy(mergedcsv="cytotoxic_merged.csv", drugno_A = 2, drugno_B = 3, ConcUnit = "mg/L")

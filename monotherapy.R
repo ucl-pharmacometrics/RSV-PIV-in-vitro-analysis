@@ -340,3 +340,17 @@ pl.2
 pl.3
 pl.4
 dev.off()
+
+###### STEP 5 Output the EC50 results #####
+# read in parameter estimation table
+tab1 <- read.csv("EC50_est.csv")
+
+df1 <- data.frame(matrix(nrow = 4, ncol = 4))
+colnames(df1) <- c("virus","drug","EC50","95%CI")
+df1$virus <- "PIV" 
+df1$drug <- tab1$drug
+df1$EC50 <- round(tab1$EC50,1)
+df1$`95%CI` <- paste0("(",round(tab1$EC50_low,1),",",round(tab1$EC50_high,1),")")
+
+# df <- rbind(df1, df2)
+write.csv(df1, "EC50_ci_est.csv", row.names = F)

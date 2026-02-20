@@ -33,7 +33,7 @@ extract.2combtherapy <- function(mergedcsv, drugno_A, drugno_B, ConcUnit){
   analysisdf <- rbind(analysisdf, platedf[platedf$conc1 == 0 & platedf$conc2 == unique(analysisdf$conc2)[4,],])
   # include the response of 0 when no drug is added
   df0 <- platedf[platedf$conc1 == 0 & platedf$conc2 ==0,]
-  df0$viral_percent_inh <- platedf[1,]$virus_control_od
+  df0$viral_percent_inh <- 0
   analysisdf <- rbind(analysisdf, df0) 
   
   # make a clean analysis dataframe
